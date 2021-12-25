@@ -3,11 +3,19 @@ global.request = require('request');
 var rp = require('request-promise');
 
 const app = express();
+
+const books = require('./db')
+
+
 var port = process.env.PORT || 8082;
 app.listen(port, function () { console.log('Starting node.js on port ' + port);});
 
 app.get('/', (req, res) => {
     res.send('Hello World')
+  })
+
+  app.get('/books', (req, res) => {
+    res.json(books)
   })
 
 app.get('/check/truemoney',async function (req, res) {
